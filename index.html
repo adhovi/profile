@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Abdul Hasib — Civil Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off: #f7f6f3;
+    --light: #efefec;
+    --mid: #c8c6be;
+    --text: #1a1a18;
+    --muted: #6b6b65;
+    --accent: #2a4d3e;
+    --accent2: #c8a96e;
+    --border: #e3e1da;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--white);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+    background: var(--white);
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-role {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+  }
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    border: 1.5px solid var(--accent);
+  }
+  .btn-primary:hover { background: #1e3a2e; border-color: #1e3a2e; }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+  }
+  .btn-outline:hover { background: var(--accent); color: white; }
+
+  .hero-right {
+    background: var(--off);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-photo-wrap {
+    width: 340px; height: 420px;
+    position: relative;
+  }
+  .hero-photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -12px -12px 12px 12px;
+    border: 1.5px solid var(--accent2);
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .hero-photo {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(20%);
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    background: var(--accent);
+    color: white;
+    padding: 1rem 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    z-index: 2;
+    line-height: 1.4;
+  }
+  .hero-badge strong { display: block; font-size: 1.4rem; font-family: var(--font-display); }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 5rem; }
+  section:nth-child(even) { background: var(--off); }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-number {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--border);
+    line-height: 1;
+    font-style: italic;
+    min-width: 56px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p { margin-bottom: 1.25rem; color: var(--muted); line-height: 1.9; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .edu-list { list-style: none; }
+  .edu-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-item:first-child { border-top: 1px solid var(--border); }
+  .edu-degree {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .edu-school {
+    font-size: 0.875rem;
+    color: var(--accent);
+    margin-bottom: 0.15rem;
+  }
+  .edu-meta {
+    font-size: 0.8rem;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+  }
+  .project-card {
+    background: var(--white);
+    padding: 2rem 2.25rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .project-card:hover { background: var(--off); }
+  .project-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--accent2);
+    margin-bottom: 0.75rem;
+  }
+  .project-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .project-course {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 1px;
+    letter-spacing: 0.04em;
+  }
+
+  /* RESEARCH */
+  .research-block {
+    display: grid;
+    grid-template-columns: 1fr 2.2fr;
+    gap: 4rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .research-block:last-child { border-bottom: 1px solid var(--border); }
+  .research-meta { }
+  .research-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(42,77,62,0.08);
+    padding: 4px 12px;
+    margin-bottom: 1rem;
+  }
+  .research-course {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .research-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .research-body {
+    font-size: 0.925rem;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+  .research-body ul { padding-left: 1.2rem; margin-top: 0.75rem; }
+  .research-body li { margin-bottom: 0.4rem; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .skill-group-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--accent2);
+  }
+  .skill-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-bar-wrap {
+    width: 80px; height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ACHIEVEMENTS */
+  .achieve-list { list-style: none; }
+  .achieve-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .achieve-item:first-child { border-top: 1px solid var(--border); }
+  .achieve-year {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--border);
+    min-width: 60px;
+    line-height: 1.2;
+  }
+  .achieve-content-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .achieve-content-sub {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-intro {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+  .contact-intro em { font-style: italic; color: var(--accent); }
+  .contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .contact-icon {
+    width: 36px; height: 36px;
+    background: var(--light);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .contact-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+  }
+  .contact-value {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .contact-form { }
+  .form-row { margin-bottom: 1.25rem; }
+  .form-row label {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    background: var(--white);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-row input:focus,
+  .form-row textarea:focus { border-color: var(--accent); }
+  .form-row textarea { min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.5);
+    padding: 2.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+  footer .footer-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* FADE-IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 4rem 2rem; }
+    section { padding: 4rem 2rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .research-block { grid-template-columns: 1fr; gap: 1rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Abdul Hasib</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Civil Engineer · BUET Graduate</p>
+    <h1 class="hero-name">Md Abdul <em>Hasib</em></h1>
+    <p class="hero-role">B.Sc. in Civil Engineering · Structural &amp; Environmental Engineering</p>
+    <p class="hero-bio">A dedicated civil engineering graduate from Bangladesh University of Engineering &amp; Technology, specialising in structural analysis, seismic design, and computational engineering. Eager to contribute to impactful infrastructure projects.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <img src="preview.jpg" alt="Md Abdul Hasib" class="hero-photo">
+      <div class="hero-badge"><strong>3.07</strong>CGPA · BUET</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-in">
+    <span class="section-number">01</span>
+    <div>
+      <p class="section-subtitle">Who I Am</p>
+      <h2 class="section-title">About Me</h2>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I am a graduate civil engineer with a strong foundation in structural engineering from Bangladesh University of Engineering &amp; Technology (BUET) — one of Bangladesh's most prestigious technical institutions. My academic journey spanned structural analysis, seismic evaluation, steel and concrete design, and computational modelling.</p>
+      <p>My work spans from designing retail complexes in Dhaka to analyzing core wall buildings under seismic loads per BNBC 2020. I am proficient with industry-standard tools including ETABS, SAP2000, and AutoCAD, and I bring programming skills in Python, MATLAB, and C++ to computational challenges.</p>
+      <p>Beyond academics, I served as a leader in BUET's Innovation &amp; Designing Club and Math Club, and I'm driven by the ambition to build a career delivering resilient, efficient structures for the next generation of Bangladesh's infrastructure.</p>
+    </div>
+    <div class="fade-in">
+      <p class="section-subtitle" style="margin-bottom: 1.25rem;">Education</p>
+      <ul class="edu-list">
+        <li class="edu-item">
+          <p class="edu-degree">B.Sc. in Civil Engineering</p>
+          <p class="edu-school">Bangladesh University of Engineering &amp; Technology (BUET)</p>
+          <p class="edu-meta">2023 · Major: Structural · Minor: Environmental · CGPA 3.07/4.00</p>
+        </li>
+        <li class="edu-item">
+          <p class="edu-degree">Higher Secondary Certificate (HSC)</p>
+          <p class="edu-school">Kushtia Government College</p>
+          <p class="edu-meta">2017 · GPA 5.00 / 5.00</p>
+        </li>
+        <li class="edu-item">
+          <p class="edu-degree">Secondary School Certificate (SSC)</p>
+          <p class="edu-school">Bahadurpur Secondary School</p>
+          <p class="edu-meta">2015 · GPA 5.00 / 5.00</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-number">02</span>
+    <div>
+      <p class="section-subtitle">What I've Built</p>
+      <h2 class="section-title">Project Experience</h2>
+    </div>
+  </div>
+  <div class="projects-grid fade-in">
+
+    <div class="project-card">
+      <p class="project-num">Project 01</p>
+      <h3 class="project-title">Urban Retail Complex — Nilkhet, Dhaka</h3>
+      <p class="project-course">CE 404: Capstone Project</p>
+      <p class="project-desc">Planned and designed a full retail complex by redeveloping the existing Nilkhet market. Responsibilities included structural system design, excavation estimation, architectural plans, bill of quantities, and technical report writing.</p>
+      <div class="tag-list">
+        <span class="tag">AutoCAD</span><span class="tag">ETABS</span><span class="tag">MS Excel</span><span class="tag">Structural Design</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <p class="project-num">Project 02</p>
+      <h3 class="project-title">Design Analysis of RCC Building</h3>
+      <p class="project-course">CE 410: Concrete Structure Design Sessional</p>
+      <p class="project-desc">Analyzed an RCC building under both SDC C and SDC D seismic design categories. Evaluated sway, drift, and stiffness criteria, and assessed seismic response in compliance with BNBC 2020 standards.</p>
+      <div class="tag-list">
+        <span class="tag">ETABS</span><span class="tag">BNBC 2020</span><span class="tag">Seismic Analysis</span><span class="tag">MS Excel</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <p class="project-num">Project 03</p>
+      <h3 class="project-title">Agro Farm Steel Structure</h3>
+      <p class="project-course">CE 320: Steel Structure Design Sessional</p>
+      <p class="project-desc">Designed and analyzed a steel structure farmhouse from scratch. Performed full structural modelling to verify load path, member sizing, and connection behavior under governing load combinations.</p>
+      <div class="tag-list">
+        <span class="tag">SAP2000</span><span class="tag">Steel Design</span><span class="tag">Structural Analysis</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <p class="project-num">Project 04</p>
+      <h3 class="project-title">Pile Test Information Retrieval Tool</h3>
+      <p class="project-course">CE 206: Engineering Computational Sessional</p>
+      <p class="project-desc">Developed a tool that extracts pile load test reports from PDFs — inputting a page number to retrieve site name, pile name, test date, and response graphs. Demonstrates applied programming for geotechnical data processing.</p>
+      <div class="tag-list">
+        <span class="tag">MATLAB</span><span class="tag">PDF Processing</span><span class="tag">Data Extraction</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-header fade-in">
+    <span class="section-number">03</span>
+    <div>
+      <p class="section-subtitle">Academic Research</p>
+      <h2 class="section-title">Research</h2>
+    </div>
+  </div>
+
+  <div class="research-block fade-in">
+    <div class="research-meta">
+      <span class="research-tag">Undergraduate Thesis</span>
+      <p class="research-course">CE 400: Project &amp; Thesis · BUET, 2023</p>
+    </div>
+    <div>
+      <h3 class="research-title">Structural Performance of RC Core Wall Buildings with and without Moment Resisting Frames</h3>
+      <div class="research-body">
+        <p>Investigated the feasibility of reducing or eliminating moment-resisting frames by substituting a core shear wall system — a design strategy with significant implications for architectural space efficiency and structural economy.</p>
+        <ul>
+          <li>Assessed performance under wind sway, drift, stiffness, and seismic response per BNBC 2020</li>
+          <li>Compared multiple structural configurations to identify optimal design alternatives</li>
+          <li>Finite element modelling and analysis performed using ETABS; results documented with Microsoft Office</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-number">04</span>
+    <div>
+      <p class="section-subtitle">Technical Proficiency</p>
+      <h2 class="section-title">Skills</h2>
+    </div>
+  </div>
+
+  <div class="skills-grid fade-in">
+    <div>
+      <p class="skill-group-title">Engineering Software</p>
+      <div class="skill-item">AutoCAD <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+      <div class="skill-item">ETABS <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+      <div class="skill-item">SAP2000 <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+      <div class="skill-item">ArcGIS <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div>
+    </div>
+    <div>
+      <p class="skill-group-title">Programming &amp; Data</p>
+      <div class="skill-item">MATLAB <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+      <div class="skill-item">Python <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+      <div class="skill-item">C++ <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div>
+      <div class="skill-item">MS Office / Excel <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+    </div>
+    <div>
+      <p class="skill-group-title">Core Competencies</p>
+      <div class="skill-item">Structural Analysis</div>
+      <div class="skill-item">Seismic Design (BNBC 2020)</div>
+      <div class="skill-item">Finite Element Modelling</div>
+      <div class="skill-item">Bill of Quantities</div>
+      <div class="skill-item">Technical Report Writing</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 4rem;" class="fade-in">
+    <p class="section-subtitle" style="margin-bottom: 2rem;">Achievements &amp; Activities</p>
+    <ul class="achieve-list">
+      <li class="achieve-item">
+        <span class="achieve-year">2023</span>
+        <div>
+          <p class="achieve-content-title">1st Runner-Up · Exceliesta (Excel Competition)</p>
+          <p class="achieve-content-sub">Chemical Day 2023, BUET</p>
+        </div>
+      </li>
+      <li class="achieve-item">
+        <span class="achieve-year">2019</span>
+        <div>
+          <p class="achieve-content-title">1st Runner-Up · Drafting Contest (AutoCAD)</p>
+          <p class="achieve-content-sub">Cennovation 2019, IUT</p>
+        </div>
+      </li>
+      <li class="achieve-item">
+        <span class="achieve-year">2021–23</span>
+        <div>
+          <p class="achieve-content-title">Assistant Secretary, Event Management</p>
+          <p class="achieve-content-sub">BUET Innovation and Designing Club</p>
+        </div>
+      </li>
+      <li class="achieve-item">
+        <span class="achieve-year">2021–23</span>
+        <div>
+          <p class="achieve-content-title">Joint General Secretary</p>
+          <p class="achieve-content-sub">BUET Math Club</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-in">
+    <span class="section-number">05</span>
+    <div>
+      <p class="section-subtitle">Get In Touch</p>
+      <h2 class="section-title">Contact</h2>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div class="fade-in">
+      <p class="contact-intro">Let's work on something <em>remarkable</em> together.</p>
+      <p style="color: var(--muted); font-size: 0.925rem; margin-bottom: 2rem; line-height: 1.8;">Whether you're looking for a structural engineer, a collaborator on a research project, or simply want to connect — I'd love to hear from you.</p>
+
+      <div class="contact-info-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <p class="contact-label">Email</p>
+          <p class="contact-value">adhovi@gmail.com</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <p class="contact-label">Phone</p>
+          <p class="contact-value">+880 1798 987344</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <p class="contact-label">Location</p>
+          <p class="contact-value">Jigatola, Dhaka, Bangladesh</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-in">
+      <div class="form-row">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Rahim Ahmed">
+      </div>
+      <div class="form-row">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+      <div class="form-row">
+        <label>Message</label>
+        <textarea placeholder="Tell me about your project or inquiry..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="alert('Thank you! (Connect this to a backend or Formspree to enable real submissions.)')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Md Abdul Hasib</span>
+  <span>Graduate Civil Engineer · BUET 2023</span>
+  <span>Dhaka, Bangladesh</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
